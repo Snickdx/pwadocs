@@ -1,0 +1,49 @@
+site_name: PWA Docs
+site_author: Author
+site_favicon: assets/images/favicon.ico
+site_url: https://github.com/Snickdx/pwadocs
+
+theme: 'material'
+
+pages:
+ - Chapter 1: index.md
+ - Chapter 2: chapter2.md
+
+# Extensions
+markdown_extensions:
+  - pymdownx.arithmatex
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tilde
+
+# Options
+extra:
+  version: 0.2.0
+  github:
+    download_release: true
+  author:
+    github: snickdx
+  palette:
+    primary: 'teal'
+    accent: 'amber'
+  feature:
+    tabs: false
+
+extra_javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+extra_css:
+    - assets/stylesheets/extra.css
+
+# Repository
+repo_name: pwadocs
+repo_url: https://github.com/Snickdx/pwadocs

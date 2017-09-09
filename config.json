@@ -1,0 +1,13 @@
+{
+	"img_36": "../assets/images/logo-36.png",
+	"img_192": "../assets/images/logo-192.png",
+	"img_512": "../assets/images/logo-512.png",
+	"title": "Title of Document",
+	"name": "Name of App",
+	"short_name": "Short",
+	"description": "Sample Description",
+	"favicon": "../assets/images/favicon.ico",
+	"background_color": "#eeeeee",
+	"manifest": "../manifest.json",
+	"theme_color": "#009688"
+}

@@ -1,0 +1,44 @@
+
+        <!--<meta charset="utf-8">-->
+        <meta name="description" content="<%= description %>">
+        <meta name="theme-color" content="<%= theme_color %>">
+
+        <!--ANDROID-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="<%= img_192 %>">
+        <link rel="icon" sizes="36x36" href="<%= img_36 %>">
+
+        <!--IOS-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="<%= theme_color %>">
+        <meta name="apple-mobile-web-app-title" content="<%= title %>">
+        <link rel="apple-touch-icon" href="<%= img_192 %>">
+        <link rel="apple-touch-icon-precomposed" href="<%= img_192 %>">
+        <link rel="apple-touch-startup-image" href="<%= img_192 %>">
+
+        <!--WINDOWS-->
+        <meta name="msapplication-TileImage" content="<%= img_192 %>">
+        <meta name="msapplication-TileColor" content="<%= theme_color %>">
+        <meta name="msapplication-square310x310logo" content="<%= img_192 %>">
+        <meta name="msapplication-navbutton-color" content="<%= theme_color %>">
+		
+		<!-- WEB -->
+		<!--<link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon">-->
+        <link rel="icon" href="<%= favicon %>" type="image/x-icon">
+        <link rel="icon" sizes="192x192" href="<%= img_192 %>">
+
+        <link rel="manifest" href="<%= manifest %>">
+
+        <script>
+            'use strict';
+
+            if ('serviceWorker' in navigator) {
+	            navigator.serviceWorker.register('service-worker.js', {scope: '/'})
+		            .then(function(reg) {
+			            console.log('Registration succeeded. Scope is ' + reg.scope);
+		            }).catch(function(error) {
+		            console.log('Registration failed with ' + error);
+	            });
+            }
+
+        </script>

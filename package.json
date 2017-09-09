@@ -1,0 +1,36 @@
+{
+  "name": "pwadocs",
+  "version": "1.0.0",
+  "description": "Progressive Web App Wrapper for mkdocs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "g": "^2.0.1",
+    "gulp": "^3.9.1",
+    "path": "^0.12.7",
+    "run-sequence": "^1.2.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-shell": "^0.6.3",
+    "gulp-template": "^4.0.0",
+    "gulp-text-simple": "^0.4.0",
+    "sw-precache": "^5.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snickdx/pwadocs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Snickdx/pwadocs/issues"
+  },
+  "homepage": "https://github.com/Snickdx/pwadocs#readme"
+}
