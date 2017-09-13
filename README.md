@@ -14,7 +14,7 @@ npm install
 ```
 
 ## Configuration
-Customize the project's name, theme etc. by editing the config.json file.
+Customize the project's name, theme, images etc. by editing the config.json file.
 Images can be replaced in the assets/images/ directory.
 
 ## Development
