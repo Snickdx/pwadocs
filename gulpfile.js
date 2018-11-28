@@ -4,7 +4,6 @@ var gulp = require('gulp'),
 	shell = require('gulp-shell'),
 	path = require('path'),
 	template = require('gulp-template'),
-	swPrecache = require('sw-precache'),
 	runSequence = require('run-sequence'),
 	fs = require('fs'),
 	rootDir = 'site';
@@ -18,7 +17,6 @@ gulp.task('inject-pwa', function() {
 	fs.readFile('config.json', function(err, data){
 		var config = JSON.parse(data);
 		
-		gulp.src("PWA/manifest.json").pipe(gulp.dest('site/'));
 		gulp.src("assets/**/*").pipe(gulp.dest('site/assets/'));
 		gulp.src('PWA/index.html').pipe((textTransformation(function(str){
 			gulp.src('site/**/index.html')

@@ -1,10 +1,10 @@
 # PWA Docs
 
 ## REQUIREMENTS
-* npm and gulp
+* npm
 * python 2.7
 * pip http://www.saltycrane.com/blog/2010/02/how-install-pip-ubuntu/
-
+* mkdocs material: https://squidfunk.github.io/mkdocs-material/getting-started/
 
 ## INSTALLATION
 ``` sh
