@@ -6,16 +6,8 @@
 	"directories": {
 		"doc": "docs"
 	},
-	"dependencies": {
-		"g": "^2.0.1",
-		"path": "^0.12.7",
-		"run-sequence": "^1.2.2"
-	},
+	"dependencies": {},
 	"devDependencies": {
-		"fs": "0.0.1-security",
-		"gulp-inject-string": "^1.1.1",
-		"gulp-text-simple": "^0.4.2",
-		"mustache": "^2.3.0",
 		"workbox-build": "^3.4.1"
 	},
 	"scripts": {
