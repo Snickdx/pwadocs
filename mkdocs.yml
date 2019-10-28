@@ -1,65 +1,51 @@
-site_name: PWA Docs
-site_author: Author
-site_favicon: assets/images/favicon.ico
-site_url: https://github.com/Snickdx/pwadocs
+# Project information
+site_name: 'PWA Docs'
+site_description: 'A PWA wrapper for Material Design themed for MkDocs'
+site_author: 'Nicholas Mendez'
+site_url: 'https://github.com/Snickdx/pwadocs'
 
-#page:
-#  meta:
-#    description: "this is a description"
+# Repository
+repo_name: 'snickdx/pwadocs'
+repo_url: 'https://github.com/Snickdx/pwadocs'
 
+# Copyright
+copyright: 'Copyright &copy; 2019 Nicholas Mendez'
+
+# Configuration
 theme:
   name: 'material'
-  custom_dir: 'theme/'
-  "short_name": "Demo"
-  "description": "Sample Description"
-  "color": "#3f51b5"
+  language: 'en'
+  custom_dir: 'theme'
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
 
+# Customization
+extra:
+  manifest: 'manifest.json'
+  social:
+    - type: 'github'
+      link: 'https://github.com/squidfunk'
+    - type: 'twitter'
+      link: 'https://twitter.com/squidfunk'
+    - type: 'linkedin'
+      link: 'https://linkedin.com/in/squidfunk'
 
-nav:
- - Chapter 1: index.md
- - Chapter 2: chapter2.md
+# Google Analytics
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
 
 # Extensions
 markdown_extensions:
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
 
-# Options
-extra:
-  version: 0.2.0
-  github:
-    download_release: true
-  author:
-    github: snickdx
-  palette:
-    primary: 'teal'
-    accent: 'amber'
-  feature:
-    tabs: false
-
-extra_javascript:
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
-extra_css:
-    - assets/stylesheets/extra.css
-
-extra_templates:
-
-
-# Repository
-repo_name: pwadocs
-repo_url: https://github.com/Snickdx/pwadocs
+#PWA Config
+use_directory_urls: false

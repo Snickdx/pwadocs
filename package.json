@@ -1,27 +1,18 @@
 {
-	"name": "pwadocs",
-	"version": "1.0.0",
-	"description": "Progressive Web App Wrapper for mkdocs",
-	"main": "",
-	"directories": {
-		"doc": "docs"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"workbox-build": "^3.4.1"
-	},
-	"scripts": {
-		"doc-serve": "echo \"Error: no test specified\" && exit 1",
-		"pwa-server": ""
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Snickdx/pwadocs.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Snickdx/pwadocs/issues"
-	},
-	"homepage": "https://github.com/Snickdx/pwadocs#readme"
+  "name": "docpwa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "mkdocs build && workbox injectManifest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "workbox-cli": "^4.3.1"
+  }
 }

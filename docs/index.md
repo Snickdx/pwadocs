@@ -1,16 +1,16 @@
-# Welcome to MkDocs
+# Welcome to PWA MkDocs
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+For full documentation visit [mkdocs.org](https://mkdocs.org).
 
 ## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
 * `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+* `npm run build` - Build the documentation site.
 
 ## Project layout
 
+    sw-src.js # Workbox service worker manifest
+    workbox-config.js # Workbox config file
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.

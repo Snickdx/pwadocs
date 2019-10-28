@@ -1,47 +1,31 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
 {% import "partials/language.html" as lang with context %}
 {% set feature = config.theme.feature %}
 {% set palette = config.theme.palette %}
 {% set font = config.theme.font %}
+<!doctype html>
 <html lang="{{ lang.t('language') }}" class="no-js">
   <head>
     {% block site_meta %}
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name=”apple-mobile-web-app-capable” content=”yes”>
+      <link rel="apple-touch-icon" sizes="192x192" href="./assets/icon/logo-192.png">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <meta name="description" content="{{config.theme.description}}">
-      <meta name="theme-color" content="{{config.theme.color}}">
-
-      <!--ANDROID-->
-      <meta name="mobile-web-app-capable" content="yes">
-      <link rel="icon" sizes="192x192" href="assets/images/icons/icon192.png">
-      <link rel="icon" sizes="36x36" href="assets/images/icons/icon36.png">
-
-      <!--IOS-->
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="{{config.theme.color}}">
-      <meta name="apple-mobile-web-app-title" content="{{config.theme.title}}}">
-      <link rel="apple-touch-icon" href="assets/images/icons/icon192.png">
-      <link rel="apple-touch-icon-precomposed" href="assets/images/icons/icon192.png">
-      <link rel="apple-touch-startup-image" href="assets/images/icons/icon192.png">
-
-      <!--WINDOWS-->
-      <meta name="msapplication-TileImage" content="assets/images/icons/icon192.png">
-      <meta name="msapplication-TileColor" content="{{config.theme.color}}">
-      <meta name="msapplication-square310x310logo" content="assets/images/icons/icon192.png">
-      <meta name="msapplication-navbutton-color" content="{{config.theme.color}}">
-
-      <!-- WEB -->
-
-      <link rel="icon" href="{{config.theme.favicon}}" type="image/x-icon">
-      <link rel="icon" sizes="192x192" href="assets/images/icons/icon192.png">
-
-      <link rel="manifest" href="assets/manifest.json">
+      <link rel="manifest" href="manifest.json">
       {% if page and page.meta and page.meta.description %}
         <meta name="description" content="{{ page.meta.description }}">
       {% elif config.site_description %}
         <meta name="description" content="{{ config.site_description }}">
       {% endif %}
-      {% if page.canonical_url %}
+      {% if page and page.meta and page.meta.redirect %}
+        <script>var anchor=window.location.hash.substr(1);location.href="{{ page.meta.redirect }}"+(anchor?"#"+anchor:"")</script>
+        <meta http-equiv="refresh" content="0; url={{ page.meta.redirect }}">
+        <meta name="robots" content="noindex">
+        <link rel="canonical" href="{{ page.meta.redirect }}">
+      {% elif page.canonical_url %}
         <link rel="canonical" href="{{ page.canonical_url }}">
       {% endif %}
       {% if page and page.meta and page.meta.author %}
@@ -63,21 +47,24 @@
         <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
       {% endfor %}
       <link rel="shortcut icon" href="{{ config.theme.favicon | url }}">
-      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-3.1.0">
+      <link rel="icon" type="image/x-icon" href="{{ config.theme.favicon | url }}">
+      <meta name="apple-mobile-web-app-title" content="{{config.site_name}}">
+
+      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-4.4.3">
     {% endblock %}
     {% block htmltitle %}
       {% if page and page.meta and page.meta.title %}
         <title>{{ page.meta.title }}</title>
       {% elif page and page.title and not page.is_homepage %}
-        <title>{{ page.title }} - {{ config.site_name }}</title>
+        <title>{{ page.title | striptags }} - {{ config.site_name }}</title>
       {% else %}
         <title>{{ config.site_name }}</title>
       {% endif %}
     {% endblock %}
     {% block styles %}
-      <link rel="stylesheet" href="{{ 'assets/stylesheets/application.11e41852.css' | url }}">
+      <link rel="stylesheet" href="{{ 'assets/stylesheets/application.4031d38b.css' | url }}">
       {% if palette.primary or palette.accent %}
-        <link rel="stylesheet" href="{{ 'assets/stylesheets/application-palette.22915126.css' | url }}">
+        <link rel="stylesheet" href="{{ 'assets/stylesheets/application-palette.3e3d1dff.css' | url }}">
       {% endif %}
       {% if palette.primary %}
         {% import "partials/palette.html" as map %}
@@ -88,15 +75,15 @@
       {% endif %}
     {% endblock %}
     {% block libs %}
-      <script src="{{ 'assets/javascripts/modernizr.20ef595d.js' | url }}"></script>
+      <script src="{{ 'assets/javascripts/modernizr.74668098.js' | url }}"></script>
     {% endblock %}
     {% block fonts %}
       {% if font != false %}
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{
-              font.text | replace(' ', '+')  + ':300,400,400i,700|' +
+              font.text | replace(' ', '+') + ':300,400,400i,700|' +
               font.code | replace(' ', '+')
-            }}">
+            }}&display=fallback">
         <style>body,input{font-family:"{{ font.text }}","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"{{ font.code }}","Courier New",Courier,monospace}</style>
       {% endif %}
     {% endblock %}
@@ -107,6 +94,11 @@
     {% for path in config["extra_css"] %}
       <link rel="stylesheet" href="{{ path | url }}">
     {% endfor %}
+    {% block analytics %}
+      {% if config.google_analytics %}
+        {% include "partials/integrations/analytics.html" %}
+      {% endif %}
+    {% endblock %}
     {% block extrahead %}{% endblock %}
   </head>
   {% if palette.primary or palette.accent %}
@@ -148,7 +140,7 @@
       {% if feature.tabs %}
         {% include "partials/tabs.html" %}
       {% endif %}
-      <main class="md-main">
+      <main class="md-main" role="main">
         <div class="md-main__inner md-grid" data-md-component="container">
           {% block site_nav %}
             {% if nav %}
@@ -207,7 +199,7 @@
       {% endblock %}
     </div>
     {% block scripts %}
-      <script src="{{ 'assets/javascripts/application.905597d0.js' | url }}"></script>
+      <script src="{{ 'assets/javascripts/application.718059d6.js' | url }}"></script>
       {% if lang.t("search.language") != "en" %}
         {% set languages = lang.t("search.language").split(",") %}
         {% if languages | length and languages[0] != "" %}
@@ -215,10 +207,10 @@
           <script src="{{ (path ~ 'lunr.stemmer.support.js') | url }}"></script>
           {% for language in languages | map("trim") %}
             {% if language != "en" %}
-              {% if language == "jp" %}
+              {% if language == "ja" %}
                 <script src="{{ (path ~ 'tinyseg.js') | url }}"></script>
               {% endif %}
-              {% if language in ("da", "de", "du", "es", "fi", "fr", "hu", "it", "jp", "no", "pt", "ro", "ru", "sv", "tr") %}
+              {% if language in ("da", "de", "es", "fi", "fr", "hu", "it", "ja", "nl", "no", "pt", "ro", "ru", "sv", "th", "tr") %}
                 <script src="{{ (path ~ 'lunr.' ~ language ~ '.js') | url }}"></script>
               {% endif %}
             {% endif %}
@@ -233,24 +225,57 @@
         <script src="{{ path | url }}"></script>
       {% endfor %}
     {% endblock %}
-    {% block analytics %}
-      {% if config.google_analytics %}
-        {% include "partials/integrations/analytics.html" %}
-      {% endif %}
-    {% endblock %}
-  <script>
-	  'use strict';
 
-	  if ('serviceWorker' in navigator) {
-		  navigator.serviceWorker.register('sw.js', {scope: '/'})
-			  .then(function(reg) {
-				  console.log('Registration succeeded. Scope is ' + reg.scope);
-			  }).catch(function(error) {
-			  console.log('Registration failed with ' + error);
-		  });
-	  }
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js', {scope:"./"});
+        });
+      }
+    </script>
 
-  </script>
+    <script type="module">
+      import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-window.prod.mjs';
+      
+      if ('serviceWorker' in navigator) {
+        const wb = new Workbox('/sw.js');
+      
+        // Add an event listener to detect when the registered
+        // service worker has installed but is waiting to activate.
+        wb.addEventListener('waiting', (event) => {
+          // `event.wasWaitingBeforeRegister` will be false if this is
+          // the first time the updated service worker is waiting.
+          // When `event.wasWaitingBeforeRegister` is true, a previously
+          // updated same service worker is still waiting.
+          // You may want to customize the UI prompt accordingly.
+      
+          // Assumes your app has some sort of prompt UI element
+          // that a user can either accept or reject.
+          const prompt = createUIPrompt({
+            onAccept: async () => {
+              // Assuming the user accepted the update, set up a listener
+              // that will reload the page as soon as the previously waiting
+              // service worker has taken control.
+              wb.addEventListener('controlling', (event) => {
+                window.location.reload();
+              });
+      
+              // Send a message telling the service worker to skip waiting.
+              // This will trigger the `controlling` event handler above.
+              // Note: for this to work, you have to add a message
+              // listener in your service worker. See below.
+              wb.messageSW({type: 'SKIP_WAITING'});
+            },
+      
+            onReject: () => {
+              prompt.dismiss();
+            }
+          })
+        });
+      
+        wb.register();
+      }
+    </script>
 
-    </body>
+  </body>
 </html>
