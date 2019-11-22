@@ -263,7 +263,6 @@
 
       function createUIPrompt({onAccept, onReject}){
         updatePrompt.addEventListener("MDCSnackbar:closing", e => {
-            console.log("snackbar closed", e.detail);
             e.detail.reason === "action"? onAccept() : onReject();
           });
       }
@@ -286,7 +285,6 @@
           // that a user can either accept or reject.
           const prompt = createUIPrompt({
             onAccept: async () => {
-              console.log('Update Issued');
               // Assuming the user accepted the update, set up a listener
               // that will reload the page as soon as the previously waiting
               // service worker has taken control.
@@ -302,7 +300,6 @@
             },
       
             onReject: () => {
-              console.log('Update Not Issued');
               //prompt.dismiss();
             }
           })

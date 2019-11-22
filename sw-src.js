@@ -5,12 +5,15 @@ workbox.setConfig({debug: false});
 workbox.precaching.precacheAndRoute([]);
 workbox.googleAnalytics.initialize();
 
+self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
+});
 
-addEventListener('message', (event) => {
+addEventListener('message', async (event) => {
  
   if (event.data && event.data.type === 'SKIP_WAITING') {
     console.log("Skip Waiting message received in SW");
-    skipWaiting();
+    self.skipWaiting();
   }
 });
 
