@@ -49,3 +49,4 @@ markdown_extensions:
 
 #PWA Config
 use_directory_urls: false
+scope: "."

@@ -62,6 +62,7 @@
       {% endif %}
     {% endblock %}
     {% block styles %}
+    <link rel="stylesheet" href="{{ 'assets/stylesheets/material-components-web.min.css' | url }}">
       <link rel="stylesheet" href="{{ 'assets/stylesheets/application.4031d38b.css' | url }}">
       {% if palette.primary or palette.accent %}
         <link rel="stylesheet" href="{{ 'assets/stylesheets/application-palette.3e3d1dff.css' | url }}">
@@ -199,6 +200,7 @@
       {% endblock %}
     </div>
     {% block scripts %}
+    <script src="{{ 'assets/javascripts/material-components-web.min.js' | url }}"></script>
       <script src="{{ 'assets/javascripts/application.718059d6.js' | url }}"></script>
       {% if lang.t("search.language") != "en" %}
         {% set languages = lang.t("search.language").split(",") %}
@@ -226,23 +228,54 @@
       {% endfor %}
     {% endblock %}
 
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js', {scope:"./"});
-        });
-      }
-    </script>
+    <div class="mdc-snackbar" id="updatePrompt">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label"
+             role="status"
+             aria-live="polite">
+            Update Available
+        </div>
+        <div class="mdc-snackbar__actions">
+          <button type="button" class="mdc-button mdc-snackbar__action" >Refresh</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdc-snackbar" id="installPrompt">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label"
+             role="status"
+             aria-live="polite">
+            App Available Offline!
+        </div>
+      </div>
+    </div>
 
     <script type="module">
       import {Workbox} from 'https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-window.prod.mjs';
+
+      const updatePrompt = document.querySelector('#updatePrompt');
+      const installPrompt = document.querySelector('#installPrompt');
+
+      const updateSnackbar = mdc.snackbar.MDCSnackbar.attachTo(updatePrompt);
+      const installSnackbar = mdc.snackbar.MDCSnackbar.attachTo(installPrompt);
+
+
+      function createUIPrompt({onAccept, onReject}){
+        updatePrompt.addEventListener("MDCSnackbar:closing", e => {
+            console.log("snackbar closed", e.detail);
+            e.detail.reason === "action"? onAccept() : onReject();
+          });
+      }
       
       if ('serviceWorker' in navigator) {
-        const wb = new Workbox('/sw.js');
+        const wb = new Workbox('sw.js',  {scope: '{{ config.scope }}' });
       
         // Add an event listener to detect when the registered
         // service worker has installed but is waiting to activate.
         wb.addEventListener('waiting', (event) => {
+          console.log("Update Found");
+          updateSnackbar.open();
           // `event.wasWaitingBeforeRegister` will be false if this is
           // the first time the updated service worker is waiting.
           // When `event.wasWaitingBeforeRegister` is true, a previously
@@ -253,6 +286,7 @@
           // that a user can either accept or reject.
           const prompt = createUIPrompt({
             onAccept: async () => {
+              console.log('Update Issued');
               // Assuming the user accepted the update, set up a listener
               // that will reload the page as soon as the previously waiting
               // service worker has taken control.
@@ -268,11 +302,23 @@
             },
       
             onReject: () => {
-              prompt.dismiss();
+              console.log('Update Not Issued');
+              //prompt.dismiss();
             }
           })
         });
-      
+        
+        wb.addEventListener('activated', (event) => {
+          // `event.isUpdate` will be true if another version of the service
+          // worker was controlling the page when this version was registered.
+          if (!event.isUpdate) {
+            console.log('Service worker activated for the first time!');
+            installSnackbar.open();
+            // If your service worker is configured to precache assets, those
+            // assets should all be available now.
+          }
+        });
+
         wb.register();
       }
     </script>

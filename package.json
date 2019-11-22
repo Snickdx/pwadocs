@@ -1,5 +1,5 @@
 {
-  "name": "docpwa",
+  "name": "PWA-Docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,5 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "workbox-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "@material/snackbar": "^4.0.0"
   }
 }

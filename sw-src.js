@@ -1,15 +1,20 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
+workbox.setConfig({debug: false});
 
 workbox.precaching.precacheAndRoute([]);
 workbox.googleAnalytics.initialize();
 
 
 addEventListener('message', (event) => {
+ 
   if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log("Skip Waiting message received in SW");
     skipWaiting();
   }
 });
+
+
 
 workbox.routing.registerRoute(
   /\.(?:js|css)$/,
