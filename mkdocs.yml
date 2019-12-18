@@ -47,6 +47,10 @@ markdown_extensions:
   - toc:
       permalink: true
 
+plugins:
+  - git-revision-date-localized
+
 #PWA Config
 use_directory_urls: false
-scope: "."
+scope: "./"
+version: 1.0.0

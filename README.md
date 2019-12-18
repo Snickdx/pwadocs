@@ -1,9 +1,14 @@
 # PWADocs
+
+<img src="install.gif" style="display block; margin-left:auto; margin-right:auto; width:180px; height:300px">
+
 A PWA wrapper for Mkdocs Material. 
 This project combines:
 * Workbox-cli for building the service worker.
 * MkDocs: Static site doc site geneator
 * Material for MkDocs: A Material theme for mkdocs
+
+[DEMO](https://nmendez.app/pwadocs)
 
 
 ## Requirements
@@ -34,7 +39,7 @@ site_author: 'Martin Donath'
 site_url: 'https://squidfunk.github.io/mkdocs-material/'
 ```
 
-View [mkdcos site](https://www.mkdocs.org/#mkdocs) for more configuration options, customization and adding pages.
+View [mkdocs site](https://www.mkdocs.org/#mkdocs) for more configuration options, customization and adding pages.
 
 ### Updating App Icons
 
@@ -67,6 +72,13 @@ Use mkdocs live reload server to view changes during development. The service wo
 ```
 $ mkdocs serve
 ```
+
+## Updating The Site
+Simply edit the markdown files run the build command and redeploy. You may also want to update the version number of your app in mkdocs.yml.
+
+<img src="update.gif" style="display block; margin-left:auto; margin-right:auto; width:180px; height:300px">
+
+Users who have the app installed would be prompted to update the next time they open it in online mode.
 
 
 ## Build site

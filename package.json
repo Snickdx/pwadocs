@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "mkdocs build && workbox injectManifest"
+    "build": "mkdocs build && workbox injectManifest",
+    "build-serve" : "npm run build && cd site && python3 -m http.server"
   },
   "keywords": [],
   "author": "",

@@ -11,6 +11,15 @@
       {% endif %}
     </a>
     {{ config.site_name }}
+    v{{ config.version }}
+  
+    <span id="network-state" style="font-size: small;"></span>
+    <script>
+      let state = document.querySelector("#network-state");
+      state.innerHTML = 'Online';
+      window.addEventListener('offline', _=> state.innerHTML = 'Offline');
+      window.addEventListener('online', _=> state.innerHTML = 'Online');
+    </script>
   </label>
   {% if config.repo_url %}
     <div class="md-nav__source">
@@ -23,5 +32,41 @@
       {% set level = 1 %}
       {% include "partials/nav-item.html" %}
     {% endfor %}
+    <li style="padding:0.5em">
+      <button id="install-button" style="height: 25px; block-size: 20px" class="mdc-button" disabled="true">
+        <span class="mdc-button__label">INSTALL</span>
+      </button>
+    </li>
+  
   </ul>
+  
+
+  <script>
+    let installPromptEvent;
+    let installBtn = document.querySelector('#install-button');
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+          event.preventDefault();
+          installPromptEvent = event;
+          installBtn.disabled = false;
+    });
+
+    installBtn.addEventListener('click', () => {
+      // Update the install UI to remove the install button
+      document.querySelector('#install-button').disabled = true;
+      // Show the modal add to home screen dialog
+      installPromptEvent.prompt();
+      // Wait for the user to respond to the prompt
+      installPromptEvent.userChoice.then((choice) => {
+        if (choice.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        // Clear the saved prompt since it can't be used again
+        installPromptEvent = null;
+      });
+    });
+  </script>
+  
 </nav>
