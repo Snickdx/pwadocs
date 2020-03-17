@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "mkdocs build && workbox injectManifest",
-    "build-serve" : "npm run build && cd site && python3 -m http.server"
+    "serve-pwa": "python -m http.server 8000 --bind 127.0.0.1 -d site",
+    "build-serve": "npm run build && python -m http.server 8000 --bind 127.0.0.1 -d site"
   },
   "keywords": [],
   "author": "",

@@ -13,7 +13,8 @@ addEventListener('message', async (event) => {
  
   if (event.data && event.data.type === 'SKIP_WAITING') {
     console.log("Skip Waiting message received in SW");
-    self.skipWaiting();
+    await skipWaiting();
+    console.log("After Skip Waiting")
   }
 });
 
